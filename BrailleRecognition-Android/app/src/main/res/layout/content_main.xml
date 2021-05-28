@@ -66,7 +66,7 @@
         android:paddingLeft="24dp"
         android:drawablePadding="4dp"
         android:paddingRight="24dp"
-        android:drawableBottom="@drawable/ic_icons8_double_down"
+        android:drawableBottom="@drawable/ic_double_down"
         android:textSize="18dp"
         android:layout_height="wrap_content"/>
 
