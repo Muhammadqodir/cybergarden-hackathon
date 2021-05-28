@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Braille Recognition</string>
+    <string name="app_version">1.0.0(Beta)</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="camera">Camera</string>
+    <string name="importImg">Import</string>
+    <string name="keyboard">Keyboard</string>
+    <string name="braille">Braille</string>
+    <string name="text">Regular</string>
+    <string name="welcomle">Welcome!</string>
+    <string name="instruction">First, select the type of translation and the method of data entry</string>
+
+    <string name="empty">Empty</string>
+    <string name="history">History</string>
+    <string name="favorite">Favorites</string>
+    <string name="share">Share</string>
+    <string name="rate">Rate</string>
+    <string name="info">About app</string>
+
+    <string name="translation">Translation:</string>
+    <string name="translation_">Translate to:</string>
+
+    <string name="pleaseWaint">Please wait</string>
+    <string name="error">Error please try again!</string>
+    <string name="nodata">Unable to recognize the text please try again!</string>
+    <string name="clickback">Click again to exit the app</string>
+    <string name="cancel">Cancel</string>
+    <string name="recognize_as">Recognize as:</string>
+    <string name="cyril">Cyrill</string>
+    <string name="latin">Latin</string>
+    <string name="save">Save</string>
+    <string name="recognized_text">Recognized text:</string>
+    <string name="developed_by">Developed by the team:</string>
+    <string-array name="ABC">
+        <item>Latin</item>
+        <item>Cyrill</item>
+    </string-array>
+
+    <string name="select_image">Select image</string>
+    <string name="app_share">Braille translation app</string>
+</resources>
