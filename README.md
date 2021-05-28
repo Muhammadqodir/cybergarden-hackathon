@@ -1,2 +1,2 @@
 # cybergarden-hackathon
-Платформа для Хакатона
+Braille Recognition - мобильное приложение для распознавания азбуки Брайля
