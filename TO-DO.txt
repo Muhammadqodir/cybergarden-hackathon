@@ -1,0 +1,5 @@
+Remove excess files
+Main layout
+Main menu
+History list item
+Favorit activity
