@@ -1,5 +1,6 @@
 package uz.mq.braillerecognition;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -8,6 +9,7 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.ScrollView;
@@ -73,6 +75,16 @@ public class TextToBraille extends AppCompatActivity {
             addToHistory(TextToBraille.this, new HistoryModel(tvBraille.getText().toString(), edText.getText().toString(), getCurrentDate(), false));
         }
         super.onStop();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                this.finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setActionBar(){

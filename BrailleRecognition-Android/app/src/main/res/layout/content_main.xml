@@ -111,7 +111,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:text="@string/braille"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:id="@+id/tvLeft"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -130,7 +130,7 @@
                         android:layout_width="wrap_content"
                         android:text="@string/text"
                         android:id="@+id/tvRight"
-                        android:textSize="13dp"
+                        android:textSize="14dp"
                         android:layout_height="wrap_content"/>
                     <ImageView
                         android:layout_width="30dp"
