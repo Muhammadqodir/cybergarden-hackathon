@@ -1,9 +1,13 @@
 package uz.mq.braillerecognition;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -36,6 +40,7 @@ import com.yalantis.ucrop.UCrop;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
@@ -51,6 +56,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.Locale;
 
 import uz.mq.braillerecognition.databinding.ActivityMainBinding;
 
@@ -313,7 +319,15 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
     boolean canceled = false;
     private void runTextRecognition(Bitmap bitmap) {
-        //Run text recognition
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle("Упс!")
+                .setMessage("Это функция находится на стадии разработки)")
+                .setPositiveButton("Окей", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).show();
     }
 
     boolean doubleBackToExitPressedOnce = false;
@@ -406,6 +420,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             case R.id.nav_info:
                 showInfoDialog();
                 break;
+            case R.id.nav_lang:
+                showLangDialog();
+                break;
             case R.id.nav_share:
                 try {
                     Intent shareIntent = new Intent(Intent.ACTION_SEND);
@@ -438,6 +455,39 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         }
         drawer.close();
         return false;
+    }
+    public static void setLocale(Activity activity, String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+        Resources resources = activity.getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
+    }
+    private void showLangDialog() {
+
+        final BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(MainActivity.this, R.style.SheetDialog);
+        final View parentView = getLayoutInflater().inflate(R.layout.select_lang ,null);
+        ((LinearLayout) parentView.findViewById(R.id.btnRus)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setLocale(MainActivity.this, "ru");
+                bottomSheerDialog.dismiss();
+                startActivity(new Intent(MainActivity.this, MainActivity.class));
+                MainActivity.this.finish();
+            }
+        });
+        ((LinearLayout) parentView.findViewById(R.id.btnEng)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setLocale(MainActivity.this, "en");
+                bottomSheerDialog.dismiss();
+                startActivity(new Intent(MainActivity.this, MainActivity.class));
+                MainActivity.this.finish();
+            }
+        });
+        bottomSheerDialog.setContentView(parentView);
+        bottomSheerDialog.show();
     }
 
     @Override
