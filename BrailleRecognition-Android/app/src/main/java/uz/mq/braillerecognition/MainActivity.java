@@ -53,6 +53,8 @@ import java.io.FileOutputStream;
 
 import uz.mq.braillerecognition.databinding.ActivityMainBinding;
 
+import static uz.mq.braillerecognition.HistoryDB.getHistory;
+
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
     AppBarLayout appBarLayout;
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     ViewOutlineProvider outlineProvider;
     NestedScrollView mainScroll;
     LinearLayout bottomActionBar;
+    HistoryAdapter adapter;
     boolean isBottomBarShow = true;
     private String tState = "b->t";
     @Override
@@ -153,12 +156,16 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     }
 
     private void fillHistory(){
-        //fill History
+        adapter = new HistoryAdapter(MainActivity.this, getHistory(MainActivity.this), false);
+        historyList.setAdapter(adapter);
+        if (getHistory(MainActivity.this).size() > 0){
+            hideIntro();
+        }
     }
 
     @Override
     protected void onStart() {
-        //update history
+
         super.onStart();
     }
 
