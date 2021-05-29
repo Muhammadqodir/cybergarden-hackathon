@@ -18,7 +18,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".RecognizeActivity"></activity>
+        <activity android:name=".FavoritesActivity"></activity>
+        <activity android:name=".SplashScrean">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".RecognizeActivity" />
         <activity android:name=".BrailleKeyboardActivity" />
         <activity android:name=".TextToBraille" />
         <activity
