@@ -32,6 +32,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.yalantis.ucrop.UCrop;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -239,7 +240,71 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-        //Run Ucrop
+
+        if (requestCode == 10 || requestCode == 20){
+            if(resultCode == RESULT_OK){
+                Uri selectedImageUri;
+                if (requestCode == 10){
+                    selectedImageUri = imageUricamera;
+                }else{
+                    selectedImageUri = imageReturnedIntent.getData();
+                }
+                if (null != selectedImageUri) {
+                    try {
+                        String filename = "trash.jpg";
+                        File sd = new File(Environment.getExternalStorageDirectory() + File.separator + "BrailleRecognition");
+
+                        if (!sd.exists()) {
+                            sd.mkdirs();
+                        }
+
+                        File dest = new File(sd, filename);
+                        Log.e("Save file name", dest.getAbsolutePath());
+                        UCrop.of(selectedImageUri, Uri.parse(dest.getAbsolutePath()))
+                                .start(MainActivity.this);
+
+                    } catch (Exception e) {
+                        Log.e("GetBitmapFromUri", "Error" + e.getMessage());
+                    }
+                }else{
+                    Log.e("BitMap", "Null");
+                }
+            }
+        }
+
+        if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
+            final Uri resultUri = UCrop.getOutput(imageReturnedIntent);
+            Log.e("GeneratenFile", resultUri.toString());
+            try {
+                Bitmap scaledBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),resultUri);
+
+                String filename = "BrailleRecognition/upload.jpg";
+
+                File sd = Environment.getExternalStorageDirectory();
+                final File dest = new File(sd, filename);
+
+                Log.e("FileName", dest.getPath());
+                try {
+                    FileOutputStream out = new FileOutputStream(dest);
+                    scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+                    out.flush();
+                    out.close();
+                    if (tState.equals("b->t")){
+                        startActivity(new Intent(MainActivity.this, RecognizeActivity.class).putExtra("file", filename));
+                    }else{
+                        runTextRecognition(BitmapFactory.decodeFile(dest.getPath()));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }catch (Exception e){
+                Log.e("GeneratingBitmap", e.getMessage());
+            }
+        } else if (resultCode == UCrop.RESULT_ERROR) {
+            final Throwable cropError = UCrop.getError(imageReturnedIntent);
+            Log.e("UCropError", cropError.getMessage());
+        }
     }
 
     boolean canceled = false;
