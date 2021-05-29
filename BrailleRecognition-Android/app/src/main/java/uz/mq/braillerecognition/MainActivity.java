@@ -210,7 +210,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     }
 
     private void showInfoDialog(){
+        final BottomSheetDialog bottomSheerDialog = new BottomSheetDialog(MainActivity.this, R.style.SheetDialog);
+        final View parentView = getLayoutInflater().inflate(R.layout.info ,null);
 
+        bottomSheerDialog.setContentView(parentView);
+        bottomSheerDialog.show();
     }
 
     String filenamecamera;
