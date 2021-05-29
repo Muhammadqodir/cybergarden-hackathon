@@ -415,7 +415,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
         switch (menuItem.getItemId()){
             case R.id.nav_favorite:
-//                startActivity(new Intent(MainActivity.this, FavoritesActivity.class));
+                startActivity(new Intent(MainActivity.this, FavoritesActivity.class));
                 break;
             case R.id.nav_info:
                 showInfoDialog();

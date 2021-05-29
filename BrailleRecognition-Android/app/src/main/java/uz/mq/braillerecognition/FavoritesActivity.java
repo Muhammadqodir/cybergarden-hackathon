@@ -74,6 +74,6 @@ public class FavoritesActivity extends AppCompatActivity {
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_icons8_left);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_left);
     }
 }
