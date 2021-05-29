@@ -114,10 +114,15 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 }
             }
         });
+
         ((LinearLayout) findViewById(R.id.btnKeyboard)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //start keyboard Activity
+                if (tState.equals("b->t")){
+                    startActivity(new Intent(MainActivity.this, TextToBraille.class));
+                }else{
+                    startActivity(new Intent(MainActivity.this, BrailleKeyboardActivity.class));
+                }
             }
         });
 
