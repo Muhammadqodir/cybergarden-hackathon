@@ -10,7 +10,7 @@ import java.io.File;
 
 public class Config {
     public static String BR_SERVER_URL = "BR_SERVER_URL";
-    public static String EMAIL = "your email";
+    public static String EMAIL = "Your email";
 
     public static RequestBody getFormBody(String token){
         return new FormEncodingBuilder()
